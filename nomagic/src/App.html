@@ -1,0 +1,11 @@
+<div class="text-center p-3">
+    <h1 class="bg-secondary text-white p-3">
+        {{ message }}
+    </h1>
+    <button class="btn btn-secondary" v-if="!limit" v-on:click="handleClick">
+        Wciśnij mnie
+    </button>
+    <h2 class="bg-success text-white p-1 m-2" v-if="limit">
+        Sukces!
+    </h2>
+</div>
