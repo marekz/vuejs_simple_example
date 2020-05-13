@@ -2,7 +2,8 @@
   <div class="bg-primary text-white text-center m-2 p-2">
     <h3>This is a component</h3>
     <h4>Product: {{ productName }}</h4>
-    <h4>Price: {{ totalPrice.toFixed(2) }}</h4>
+    <h4>Price: {{ lowTotalPrice.toFixed(2) }} zł (niższa stawka)</h4>
+    <h4>Price: {{ highTotalPrice.toFixed(2) }} zł (wyższa stawka)</h4>
   </div>
 </template>
 
@@ -13,14 +14,17 @@ export default {
     return {
       productName: "Bajtek",
       price: 203,
-      taxRate: 23,
-      counter: 0
+      lowTaxRate: 19,
+      highTaxRate: 23
     }
   },
   computed: {
-    totalPrice: function() {
-      let tp = this.price + (this.price * (this.taxRate / 100));
-      console.log(`Obliczono: (${this.counter++}) $(tp}(${this.taxRate})`);
+    lowTotalPrice: function () {
+      let tp = this.price + (this.price * (this.lowTaxRate / 100));
+      return tp;
+    },
+    highTotalPrice: function() {
+      let tp = this.price + (this.price * (this.highTaxRate / 100));
       return tp;
     }
   }
