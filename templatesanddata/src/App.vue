@@ -7,20 +7,20 @@
 </template>
 
 <script>
-  // import "core-js/modules/es.array.concat";
 export default {
   name: 'MyComponent',
   data: function () {
     return {
       productName: "Bajtek",
       price: 203,
-      taxRate: 23
+      taxRate: 23,
+      counter: 0
     }
   },
   computed: {
     totalPrice: function() {
       let tp = this.price + (this.price * (this.taxRate / 100));
-      console.log(`Obliczono: ${tp} (${this.taxRate})`);
+      console.log(`Obliczono: (${this.counter++}) $(tp}(${this.taxRate})`);
       return tp;
     }
   }
