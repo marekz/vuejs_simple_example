@@ -24,13 +24,6 @@ export default {
     }
   },
   filters: {
-    currency(value, places) {
-      return new Intl.NumberFormat("pl-PL",
-              { style: "currency", currency: "PLN",
-                minimumFractionDigits: places || 2,
-                maximumFractionDigits: places || 2
-              }).format(value);
-    },
     capitalize(name) {
       return name[0].toUpperCase() + name.slice(1);
     },
