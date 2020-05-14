@@ -2,8 +2,8 @@
   <div class="bg-primary text-white text-center m-2 p-2">
     <h3>This is a component</h3>
     <h4>Product: {{ productName }}</h4>
-    <h4>Price: {{ getTotalPrice(this.lowTaxRate).toFixed(2) }} zł (niższa stawka)</h4>
-    <h4>Price: {{ getTotalPrice(this.highTaxRate).toFixed(2) }} zł (wyższa stawka)</h4>
+    <h4>Price: {{ getTotalPrice(this.lowTaxRate) | currency }} (niższa stawka)</h4>
+    <h4>Price: {{ getTotalPrice(this.highTaxRate) | currency }} (wyższa stawka)</h4>
   </div>
 </template>
 
@@ -21,6 +21,12 @@ export default {
   methods: {
     getTotalPrice(taxRate) {
       return this.price + (this.price * (taxRate / 100));
+    }
+  },
+  filters: {
+    currency(value) {
+      return new Intl.NumberFormat("pl-PL",
+              { style: "currency", currency: "PLN"}).format(value);
     }
   }
 }
