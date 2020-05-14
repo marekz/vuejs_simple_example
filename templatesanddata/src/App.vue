@@ -2,7 +2,7 @@
   <div class="bg-primary text-white text-center m-2 p-2">
     <h3>This is a component</h3>
     <h4>Product: {{ productName }}</h4>
-    <h4>Price: {{ getTotalPrice(this.lowTaxRate) | currency }} (niższa stawka)</h4>
+    <h4>Price: {{ getTotalPrice(this.lowTaxRate) | currency(3) }} (niższa stawka)</h4>
     <h4>Price: {{ getTotalPrice(this.highTaxRate) | currency }} (wyższa stawka)</h4>
   </div>
 </template>
@@ -24,9 +24,12 @@ export default {
     }
   },
   filters: {
-    currency(value) {
+    currency(value, places) {
       return new Intl.NumberFormat("pl-PL",
-              { style: "currency", currency: "PLN"}).format(value);
+              { style: "currency", currency: "PLN",
+                minimumFractionDigits: places || 2,
+                maximumFractionDigits: places || 2
+              }).format(value);
     }
   }
 }
