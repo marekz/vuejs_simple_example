@@ -1,9 +1,11 @@
 <template>
-  <div class="bg-primary text-white text-center m-2 p-2">
-    <h3>This is a component</h3>
-    <h4>Product: {{ productName | reverse | capitalize }}</h4>
-    <h4>Price: {{ getTotalPrice(this.lowTaxRate) | currency(3) }} (niższa stawka)</h4>
-    <h4>Price: {{ getTotalPrice(this.highTaxRate) | currency }} (wyższa stawka)</h4>
+  <div class="container-fluid text-center">
+    <div class="bg-primary text-white m-2 p-3">
+      <h3>Produkt: {{ name }}</h3>
+    </div>
+    <button v-on:click="handleClick" class="btn btn-primary">
+      Wciśnij mnie
+    </button>
   </div>
 </template>
 
@@ -12,23 +14,12 @@ export default {
   name: 'MyComponent',
   data: function () {
     return {
-      productName: "Komputer Bajtek",
-      price: 203,
-      lowTaxRate: 19,
-      highTaxRate: 23
+      name: "Kamizelka ratunkowa"
     }
   },
   methods: {
-    getTotalPrice(taxRate) {
-      return this.price + (this.price * (taxRate / 100));
-    }
-  },
-  filters: {
-    capitalize(name) {
-      return name[0].toUpperCase() + name.slice(1);
-    },
-    reverse(name) {
-      return name.split("").reverse().join("");
+    handleClick() {
+    //
     }
   }
 }
