@@ -1,16 +1,8 @@
 <template>
   <div class="container-fluid text-center">
     <div class="bg-primary text-white m-2 p-3">
-      <h3>Produkt: <span v-text="name"></span></h3>
-      <ul class="text-left">
-        <li>List element</li>
-        <template v-if="showElements">
-          <li>{{ name }}</li>
-          <li>{{ price }}</li>
-        </template>
-        <li>Another list element...</li>
-      </ul>
-      <h4 v-if="showElements">{{ price }}</h4>
+      <h3 v-if="showElements">Produkt: <span v-text="name"></span></h3>
+      <h3 v-if="!showElements">Cena: <span v-text="price"></span></h3>
     </div>
     <button v-on:click="handleClick" class="btn btn-primary">
       Wciśnij mnie
