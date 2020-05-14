@@ -4,8 +4,10 @@
       <h3>Produkt: <span v-text="name"></span></h3>
       <ul class="text-left">
         <li>List element</li>
-        <li v-if="showElements">{{ name }}</li>
-        <li v-if="showElements">{{ price }}</li>
+        <template v-if="showElements">
+          <li>{{ name }}</li>
+          <li>{{ price }}</li>
+        </template>
         <li>Another list element...</li>
       </ul>
       <h4 v-if="showElements">{{ price }}</h4>
@@ -23,7 +25,7 @@ export default {
     return {
       name: "Kamizelka ratunkowa",
       price: 275,
-      showElements: false
+      showElements: true
     }
   },
   methods: {
