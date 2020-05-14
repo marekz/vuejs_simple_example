@@ -2,7 +2,7 @@
   <div class="container-fluid text-center">
     <div class="bg-primary text-white m-2 p-3">
       <h3>Produkt: <span v-text="name"></span></h3>
-      <span v-html="fragment"></span>
+      <h4 v-if="showElements">{{ price }}</h4>
     </div>
     <button v-on:click="handleClick" class="btn btn-primary">
       Wciśnij mnie
@@ -16,12 +16,13 @@ export default {
   data: function () {
     return {
       name: "Kamizelka ratunkowa",
-      fragment: '<div class="form-group">\n                    Hasło\n                    <input class="form-control" />\n                  </div>'
+      price: 275,
+      showElements: false
     }
   },
   methods: {
     handleClick() {
-    //
+      this.showElements = !this.showElements;
     }
   }
 }
