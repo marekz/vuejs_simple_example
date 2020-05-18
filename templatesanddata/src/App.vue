@@ -1,9 +1,11 @@
 <template>
   <div class="container-fluid text-center">
     <div class="bg-primary text-white m-2 p-3">
-      <h3 v-if="counter % 3 == 0">Produkt: <span v-text="name"></span></h3>
-      <h3 v-else-if="counter % 3 == 1">Cena: <span v-text="price"></span></h3>
-      <h3 v-else>Kategoria: <span v-text="category"></span></h3>
+      <h3 v-bind:class="elemClasses">Produkt: <span v-text="name"></span></h3>
+      <!--
+        :class is short method v-bind
+        <h3 :class="elemClasses">Produkt: <span v-text="name"></span></h3>
+       -->
     </div>
     <button v-on:click="handleClick" class="btn btn-primary">
       Wciśnij mnie
@@ -17,15 +19,19 @@ export default {
   data: function () {
     return {
       name: "Kamizelka ratunkowa",
-      price: 275,
-      showElements: true,
-      category: "Sporty wodne",
-      counter: 0
+      highlight: false
+    }
+  },
+  computed: {
+    elemClasses() {
+      return this.highlight
+      ? ["bg-light", "text-dark", "display-4"]
+              : ["bg-dark", "text-light", "p-2"]
     }
   },
   methods: {
     handleClick() {
-      this.counter++;
+      this.highlight = !this.highlight;
     }
   }
 }
