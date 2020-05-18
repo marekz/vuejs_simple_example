@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid text-center">
     <div class="bg-primary text-white m-2 p-3">
-      <h3 v-bind:data-size="size" class="display-4">Produkt: <span v-text="name"></span></h3>
+      <h3 v-bind="attrValues" class="display-4">Produkt: <span v-text="name"></span></h3>
     </div>
     <button v-on:click="handleClick" class="btn btn-primary">
       Wciśnij mnie
@@ -19,8 +19,14 @@ export default {
     }
   },
   computed: {
-    size() {
-      return this.highlight ? "big": "small";
+    attrValues() {
+      return {
+        class: this.highlight ? ["bg-light", "text-dark"] : [],
+        style: {
+          border: this.highlight ? "5px solid red" : ""
+        },
+        "data-size": this.highlight ? "big" : "small"
+      }
     }
   },
   methods: {
@@ -31,6 +37,6 @@ export default {
 }
 </script>
 <style>
-  [data-size='big'] { font-size: 40pt !important; }
+  [data-size='big'] { font-size: 40pt !important; background: red }
   [data-size='small'] { font-size: 20pt !important; }
 </style>
