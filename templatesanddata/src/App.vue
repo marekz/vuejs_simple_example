@@ -6,7 +6,7 @@
       <tbody>
       <tr v-for="p in products" :key = "p">
         <td>{{ p.name }}</td>
-        <td>{{ p.price }}</td>
+        <td>{{ p.price | currency }}</td>
       </tr>
       </tbody>
     </table>
@@ -29,9 +29,15 @@ export default {
         { name: "Piłka nożna", price: 19.50}]
     }
   },
+  filters: {
+    currency(value) {
+      return new Intl.NumberFormat("pl-PL",
+              { style: "currency", currency: "PLN", }).format(value);
+    }
+  },
   methods: {
     handleClick() {
-      this.highlight = !this.highlight;
+    //
     }
   }
 }
