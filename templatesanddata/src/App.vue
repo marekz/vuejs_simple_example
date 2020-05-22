@@ -4,7 +4,7 @@
     <table class="table table-sm table-border table-striped text-left">
       <tr><th>Nazwa</th><th>Cena</th></tr>
       <tbody>
-      <tr v-for="p in products" :key = "p">
+      <tr v-for="p in products" :key = "p.name">
         <td>{{ p.name }}</td>
         <td>{{ p.price | currency }}</td>
       </tr>
@@ -37,8 +37,13 @@ export default {
   },
   methods: {
     handleClick() {
-    //
+      this.products.push(this.products.shift());
     }
   }
 }
 </script>
+<style>
+  #tagged {
+    background-color: coral;
+  }
+</style>
