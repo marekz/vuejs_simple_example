@@ -13,8 +13,10 @@
       </tbody>
     </table>
     <div class="text-center">
-      <button v-on:click="handleClick" class="btn btn-primary">
-        Wciśnij mnie
+      <!-- eslint-disable-next-line vue/require-v-for-key -->
+      <button v-for="i in 5" v-on:click="handleClick(i)"
+              class="btn btn-primary m-1">
+        {{ i }}
       </button>
     </div>
   </div>
