@@ -2,11 +2,9 @@
   <div class="container-fluid">
     <h2 class="bg-primary text-white text-center p-3">Produkt</h2>
     <table class="table table-sm table-border table-striped text-left">
-      <tr><th>Indeks</th><th>Klucz</th><th>Nazwa</th><th>Cena</th></tr>
+      <tr><th>Nazwa</th><th>Cena</th></tr>
       <tbody>
-        <tr v-for="(p, key, i) in products" v-bind:key="p.name">
-          <td>{{ i + 1 }}</td>
-          <td>{{ key }}</td>
+        <tr v-for="p in pageItems" v-bind:key="p.name">
           <td>{{ p.name }}</td>
           <td>{{ p.price | currency }}</td>
         </tr>
@@ -14,8 +12,9 @@
     </table>
     <div class="text-center">
       <!-- eslint-disable-next-line vue/require-v-for-key -->
-      <button v-for="i in 5" v-on:click="handleClick(i)"
-              class="btn btn-primary m-1">
+      <button v-for="i in pageCount" v-on:click="selectPage(i)"
+              class="btn btn-secondary m-1"
+              v-bind:class="{'bg-primary': currentPage == i}">
         {{ i }}
       </button>
     </div>
@@ -23,17 +22,32 @@
 </template>
 
 <script>
-  import Vue from "vue";
   export default {
   name: 'MyComponent',
   data: function () {
     return {
-      products: {
-        "kayak": { name: "Kajak", price: 275},
-        22: { name: "Kamizelka ratunkowa", price: 48.95},
-        3: { name: "Piłka nożna", price: 19.50},
-        4: { name: "Chorągiewki narożne", price: 39.95}
-      }
+      pageSize: 3,
+      currentPage: 1,
+      products: [
+        { name: "Kajak", price: 275 },
+        { name: "Kamizelka ratunkowa", price: 48.95 },
+        { name: "Piłka nożna", price: 19.50 },
+        { name: "Chorągiewki narożne", price: 39.95 },
+        { name: "Stadion", price: 79500 },
+        { name: "Myśląca czapeczka", price: 16 },
+        { name: "Chwiejne krzesło", price: 29.95 },
+        { name: "Szachownica", price: 75 },
+        { name: "Złoty król", price: 1200}
+      ]
+    }
+  },
+  computed: {
+    pageCount() {
+      return Math.ceil(this.products.length / this.pageSize);
+    },
+    pageItems() {
+      let start = (this.currentPage - 1) * this.pageSize;
+      return this.products.slice(start, start + this.pageSize);
     }
   },
   filters: {
@@ -43,17 +57,9 @@
     }
   },
   methods: {
-    handleClick() {
-      Vue.set(this.products, 5, { name: "Buty do biegania", price: 100 });
+    selectPage(page) {
+      this.currentPage = page;
     }
   }
 }
 </script>
-<style>
-  [odd] {
-    background-color: lightblue;
-  }
-  #tagged {
-    background-color: coral;
-  }
-</style>
