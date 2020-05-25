@@ -8,9 +8,8 @@
         <td>{{name}}</td>
         <td>
           <button class="btn btn-sm bg-primary text-white"
-                  v-on:click="handleClick(name)"
-                  v-on:mousemove="handleMouseEvent(name, $event)"
-                  v-on:mouseleave="handleMouseEvent(name, $event)">
+                  v-on="buttonEvents"
+                  v-bind:data-name="name">
             Wybierz
           </button>
         </td>
@@ -24,12 +23,23 @@
   name: 'MyComponent',
   data: function () {
     return {
+      buttonEvents: {
+        click: this.handleClick,
+        mousemove: this.handleMouseEvent,
+        mouseleave: this.handleMouseEvent
+      },
+      counter: 0,
       message: "Gotowy",
       names: ["Kamizelka ratunkowa", "Kajak", "Piłka nożna", "Stadion"]
     }
   },
   methods: {
-    handleMouseEvent(name, $event) {
+    handleClick($event) {
+      let name = $event.target.dataset.name;
+      this.message = `Select: ${name}`;
+    },
+    handleMouseEvent($event) {
+      let name = $event.target.dataset.name;
       if ($event.type == "mousemove") {
         this.message = `Ruch w ${name} ${this.counter++}`
       } else {
