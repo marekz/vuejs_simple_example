@@ -4,13 +4,11 @@
     <table class="table table-sm table-border table-striped text-left">
       <tr><th>Indeks</th><th>Nazwa</th><th>Cena</th></tr>
       <tbody>
-      <template v-for="(p, i) in products">
-        <tr v-bind:key="p.name" v-bind:odd="i % 2 == 0">
+        <tr v-for="(p, key, i) in products" v-bind:key="p.name">
           <td>{{ i + 1 }}</td>
           <td>{{ p.name }}</td>
           <td>{{ p.price | currency }}</td>
         </tr>
-      </template>
       </tbody>
     </table>
     <div class="text-center">
@@ -27,13 +25,12 @@
   name: 'MyComponent',
   data: function () {
     return {
-      products: [
-        { name: "Kajak", price: 275},
-        { name: "Kamizelka ratunkowa", price: 48.95},
-        { name: "Piłka nożna", price: 19.50},
-        { name: "Chorągiewki narożne", price: 39.95},
-        { name: "Stadion", price: 79500},
-        { name: "Myśląca czapeczka", price: 16}]
+      products: {
+        1: { name: "Kajak", price: 275},
+        2: { name: "Kamizelka ratunkowa", price: 48.95},
+        3: { name: "Piłka nożna", price: 19.50},
+        4: { name: "Chorągiewki narożne", price: 39.95}
+      }
     }
   },
   filters: {
@@ -44,7 +41,7 @@
   },
   methods: {
     handleClick() {
-      Vue.set(this.products, 1, { name: "Buty do biegania", price: 100 });
+      Vue.set(this.products, 5, { name: "Buty do biegania", price: 100 });
     }
   }
 }
