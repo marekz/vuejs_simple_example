@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     handleClick() {
-      this.products.push(this.products.shift());
+      this.products = this.products.filter(p => p.price > 20);
     }
   }
 }
