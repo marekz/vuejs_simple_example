@@ -11,6 +11,14 @@
       </tbody>
     </table>
     <div class="text-center">
+      <button class="btn btn-secondary m-1" v-on:click="toggleSort"
+              v-bind:class="{'bg-primary': sort}">
+        Włącz sortowanie
+      </button>
+      <button class="btn btn-secondary m-1" v-on:click="toggleFilter"
+              v-bind:class="{'bg-primary': filter}">
+        Włącz filtrowanie
+      </button>
       <!-- eslint-disable-next-line vue/require-v-for-key -->
       <button v-for="i in pageCount" v-on:click="selectPage(i)"
               class="btn btn-secondary m-1"
@@ -28,6 +36,8 @@
     return {
       pageSize: 3,
       currentPage: 1,
+      filter: false,
+      sort: false,
       products: [
         { name: "Kajak", price: 275 },
         { name: "Kamizelka ratunkowa", price: 48.95 },
@@ -43,11 +53,15 @@
   },
   computed: {
     pageCount() {
-      return Math.ceil(this.products.length / this.pageSize);
+      return Math.ceil(this.dataItems.length / this.pageSize);
     },
     pageItems() {
       let start = (this.currentPage - 1) * this.pageSize;
-      return this.products.slice(start, start + this.pageSize);
+      return this.dataItems.slice(start, start + this.pageSize);
+    },
+    dataItems() {
+      let data = this.filter ? this.products.filter(p => p.price > 100 ) : this.products;
+      return this.sort ? data.concat().sort((p1, p2) => p2.price - p1.price) : data;
     }
   },
   filters: {
@@ -59,6 +73,14 @@
   methods: {
     selectPage(page) {
       this.currentPage = page;
+    },
+    toggleFilter() {
+      this.filter = !this.filter;
+      this.currentPage = 1;
+    },
+    toggleSort() {
+      this.sort = !this.sort;
+      this.currentPage = 1;
     }
   }
 }
