@@ -2,10 +2,11 @@
   <div class="container-fluid">
     <h2 class="bg-primary text-white text-center p-3">Produkt</h2>
     <table class="table table-sm table-border table-striped text-left">
-      <tr><th>Indeks</th><th>Nazwa</th><th>Cena</th></tr>
+      <tr><th>Indeks</th><th>Klucz</th><th>Nazwa</th><th>Cena</th></tr>
       <tbody>
         <tr v-for="(p, key, i) in products" v-bind:key="p.name">
           <td>{{ i + 1 }}</td>
+          <td>{{ key }}</td>
           <td>{{ p.name }}</td>
           <td>{{ p.price | currency }}</td>
         </tr>
@@ -26,8 +27,8 @@
   data: function () {
     return {
       products: {
-        1: { name: "Kajak", price: 275},
-        2: { name: "Kamizelka ratunkowa", price: 48.95},
+        "kayak": { name: "Kajak", price: 275},
+        22: { name: "Kamizelka ratunkowa", price: 48.95},
         3: { name: "Piłka nożna", price: 19.50},
         4: { name: "Chorągiewki narożne", price: 39.95}
       }
