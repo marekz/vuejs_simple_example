@@ -5,7 +5,7 @@
       <div id="middle-element" class="bg-secondary p-4" v-on:click.stop="handleClick">
         Element pośredni
         <div id="inner-element" class="bg-info  p-4"
-             v-on:click="handleClick">
+             v-on:click.once="handleClick">
           Element wewnętrzny
         </div>
       </div>
