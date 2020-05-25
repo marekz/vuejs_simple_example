@@ -22,7 +22,8 @@
 </template>
 
 <script>
-export default {
+  import Vue from "vue";
+  export default {
   name: 'MyComponent',
   data: function () {
     return {
@@ -43,7 +44,7 @@ export default {
   },
   methods: {
     handleClick() {
-      this.products[1] = { name: "Buty do biegania", price: 100 };
+      Vue.set(this.products, 1, { name: "Buty do biegania", price: 100 });
     }
   }
 }
