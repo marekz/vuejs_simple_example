@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="bg-primary text-white text-center p-3 m-2">
-      <h3>{{ name }}</h3>
+      <h3 v-on:click="name = 'Kliknięto!'">{{ name }}</h3>
     </div>
   </div>
 </template>
