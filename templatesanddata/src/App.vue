@@ -1,11 +1,14 @@
 <template>
   <div class="container-fluid">
-    <div class="bg-primary text-white text-center p-3 m-2">
-      <h3 v-on:click="handleEvent('Piłka nożna', $event)">{{ name }}</h3>
-    </div>
-    <div class="bg-primary text-white text-center p-3 m-2">
-      <h3 @click="handleEvent('Stadion', $event)">{{ name }}</h3>
-    </div>
+    <h3 class="bg-primary text-white text-center mt-2 p-2">{{ message }}</h3>
+    <table class="table table-sm table-striped table-bordered">
+      <tr><th>Index</th><th>Nazwa</th><th>Akcje</th></tr>
+      <tr v-for="(name, index) in names" v-bind:key="name">
+        <td>{{index}}</td>
+        <td>{{name}}</td>
+        <td><button class="btn btn-sm bg-primary text-white" v-on:click="handleClick(name)">Wybierz</button></td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -14,12 +17,13 @@
   name: 'MyComponent',
   data: function () {
     return {
-        name: "Kamizelka ratunkowa"
+      message: "Gotowy",
+      names: ["Kamizelka ratunkowa", "Kajak", "Piłka nożna", "Stadion"]
     }
   },
   methods: {
-    handleEvent(name, $event) {
-      this.name = `${name} - ${$event.type}`;
+    handleClick(name) {
+      this.message = `Wybierz: ${name}`;
     }
   }
 }
