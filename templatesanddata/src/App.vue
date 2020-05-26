@@ -1,10 +1,21 @@
 <template>
   <div class="container-fluid">
-    <div class="bg-primary p-4 text-white h3">
-      {{ message }}
+    <div class="bg-info m-2 p-2 text-white">
+      {{ dataValue }}
     </div>
-    <input class="form-control bg-light" placeholder="Wpisz tekst..."
-           v-on:keydown.shift="handleKey" />
+    <div class="bg-primary m-2 p-2 text-white">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" v-on:change="handleChange" />
+          Wartość danych
+        </label>
+      </div>
+    </div>
+    <div class="text-center m-2">
+      <button class="btn btn-secondary" v-on:click="reset">
+        Reset
+      </button>
+    </div>
   </div>
 </template>
 
@@ -13,12 +24,15 @@
     name: 'MyComponent',
     data: function() {
       return {
-        message: "Gotowy"
+        dataValue: false
       }
     },
     methods: {
-      handleKey($event) {
-        this.message = $event.key;
+      reset() {
+        this.dataValue = false;
+      },
+      handleChange($event) {
+        this.dataValue = $event.target.checked;
       }
     }
 }
