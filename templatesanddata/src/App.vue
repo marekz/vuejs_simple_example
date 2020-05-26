@@ -6,7 +6,9 @@
     <div class="bg-primary m-2 p-2 text-white">
       <div class="form-check">
         <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" v-on:change="handleChange" />
+          <input class="form-check-input" type="checkbox"
+                 v-on:change="handleChange"
+                 v-bind:checked="dataValue" />
           Wartość danych
         </label>
       </div>
