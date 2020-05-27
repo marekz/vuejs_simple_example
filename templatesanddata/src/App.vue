@@ -1,26 +1,29 @@
 <template>
   <div class="container-fluid">
     <div class="bg-info m-2 p-2 text-white">
-      <div>Wartość danych: {{ dataValue }}</div>
-      <div>Inna wartość: {{ otherValue || "(Pusta)" }}</div>
+      <div>Imię: {{ name }}</div>
+      <div>Hasło: {{ password }}</div>
+      <div>Szczegóły: {{ details }}</div>
     </div>
     <div class="bg-primary m-2 p-2 text-white">
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox"
-                 v-model="dataValue" />
+      <div class="form-group">
+        <label>
           Wartość danych
         </label>
+        <input class="form-control" v-model="name" />
       </div>
-      <div class="bg-primary m-2 p-2">
-        <input type="text" class="form-control"
-               v-model="otherValue" />
+      <div class="form-group">
+        <label>
+          Hasło
+        </label>
+        <input type="password" class="form-control" v-model="password" />
       </div>
-    </div>
-    <div class="text-center m-2">
-      <button class="btn btn-secondary" v-on:click="reset">
-        Reset
-      </button>
+      <div class="form-group">
+        <label>
+          Szczegóły
+        </label>
+        <textarea class="form-control" v-model="details"></textarea>
+      </div>
     </div>
   </div>
 </template>
@@ -30,8 +33,9 @@
     name: 'MyComponent',
     data: function() {
       return {
-        dataValue: false,
-        otherValue: ""
+        name: "Janek",
+        password: "hasło",
+        details: "Ma uprawnienia administracyjne"
       }
     },
     methods: {
