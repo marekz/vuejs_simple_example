@@ -2,27 +2,20 @@
   <div class="container-fluid">
     <div class="bg-info m-2 p-2 text-white">
       <div>Imię: {{ name }}</div>
-      <div>Hasło: {{ password }}</div>
-      <div>Szczegóły: {{ details }}</div>
+      <div>Czy ma dostęp administracyjny: {{ hasAdminAccess }}</div>
     </div>
     <div class="bg-primary m-2 p-2 text-white">
-      <div class="form-group">
-        <label>
-          Wartość danych
-        </label>
-        <input class="form-control" v-model="name" />
+      <div class="form-check">
+        <input class="form-check-input" type="radio" v-model="name" value="Janek" />
+        <label class="form-check-label">Janek</label>
       </div>
-      <div class="form-group">
-        <label>
-          Hasło
-        </label>
-        <input type="password" class="form-control" v-model="password" />
+      <div class="form-check">
+        <input class="form-check-input" type="radio" v-model="name" value="Alicja" />
+        <label class="form-check-label">Alicja</label>
       </div>
-      <div class="form-group">
-        <label>
-          Szczegóły
-        </label>
-        <textarea class="form-control" v-model="details"></textarea>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" v-model="hasAdminAccess" />
+        <label class="form-check-label">Czy ma dostęp administracyjny?</label>
       </div>
     </div>
   </div>
@@ -34,14 +27,7 @@
     data: function() {
       return {
         name: "Janek",
-        password: "hasło",
-        details: "Ma uprawnienia administracyjne"
-      }
-    },
-    methods: {
-      reset() {
-        this.dataValue = false;
-        this.otherValue = false;
+        hasAdminAccess: true
       }
     }
 }
