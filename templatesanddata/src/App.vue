@@ -1,20 +1,12 @@
 <template>
     <div class="container-fluid">
-        <div class="bg-info m-2 p-2 text-white">
-            <div>Wybrane miasta: {{ cities }}</div>
+        <div class="m-2 p-2 text-white" v-bind:class="elemClass">
+          <div>Wartość: {{ elemClass }}</div>
         </div>
         <div class="form-check m-2">
             <label class="form-check-label">
-              Miasto
+              <input type="checkbox" class="form-check-input" v-model="dataValue" /> Ciemny kolor
             </label>
-            <select multiple class="form-control" v-model="cities">
-              <option v-for="city in cityNames" v-bind:key="city">
-                {{ city }}
-              </option>
-            </select>
-        </div>
-        <div class="text-center">
-          <button v-on:click="reset" class="btn btn-info">Reset</button>
         </div>
     </div>
 </template>
@@ -24,13 +16,12 @@
         name: 'MyComponent',
         data: function () {
             return {
-                cityNames: ["Warszawa", "Zamość", "Szczecin", "Gdańsk", "Kraków", "Poznań", "Lublin"],
-                cities: []
+                dataValue: false,
             }
         },
-        methods: {
-            reset() {
-                this.cities = [];
+        computed: {
+            elemClass() {
+              return this.dataValue ? "bg-primary" : "bg-info";
             }
         }
     }
