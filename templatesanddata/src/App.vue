@@ -1,17 +1,12 @@
 <template>
   <div class="container-fluid">
     <div class="bg-info m-2 p-2 text-white">
-      <div>Imię: {{ name }}</div>
+      <div>LIczba: {{ amount }}, liczba + 10 = {{ amount + 10 }}</div>
     </div>
-    <div class="bg-primary m-2 p-2 text-white">
-      <div class="form-group">
-        <label>Wybrane imiona: </label>
-        <select class="form-controll" v-model="name">
-          <option value="all">Wszystkie</option>
-          <option v-for="n in allNames" v-bind:key="n" v-bind:value="n">Tylko {{ n}}</option>
-        </select>
+    <div class="form-group">
+        <label>Liczba: </label>
+        <input type="number" class="form-control" v-model="amount" />
       </div>
-    </div>
   </div>
 </template>
 
@@ -20,8 +15,7 @@
     name: 'MyComponent',
     data: function() {
       return {
-        name: "Janek",
-        allNames: ["Janek", "Alicja", "Magda"]
+        amount: 100
       }
     }
 }
