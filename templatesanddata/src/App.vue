@@ -1,35 +1,25 @@
 <template>
     <div class="container-fluid">
-        <div class="m-2 p-2 text-white" v-bind:class="dataValue">
-          <div>Wartość: {{ dataValue }}</div>
+        <div class="btn-primary text-white my-2 p-2">
+            Nazwa: {{ name }}, Kategoria: {{ category }}, cena: {{ price }}
         </div>
-        <div class="form-check m-2">
-            <label class="form-check-label">
-              <input type="checkbox" class="form-check-input"
-                v-model="dataValue" v-bind:true-value="darkColor" v-bind:false-value="lightColor"/> Ciemny kolor
-            </label>
-        </div>
-        <div class="form-group m-2 p-2 bg-secondary">
-            <label class="form-check-label">Kolor</label>
-            <select v-model="dataValue" class="form-control">
-                <option v-bind:value="darkColor">Ciemny kolor</option>
-                <option v-bind:value="lightColor">Jasny kolor</option>
-            </select>
-        </div>
-        <div class="form-check-inline m-2">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input"
-                    v-model="dataValue" v-bind:value="lightColor" />
-                    Jasny kolor
-            </label>
-        </div>
-        <div class="form-check-inline m-2">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input"
-                    v-model="dataValue" v-bind:value="darkColor" />
-                    Ciemny kolor
-            </label>
-        </div>
+        <form v-on:submit.prevent="handleSubmit">
+            <div class="form-group">
+                <label>Nazwa</label>
+                <input v-model="name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Kategoria</label>
+                <input v-model="category" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Cena</label>
+                <input type="number" v-model.number="price" class="form-control" />
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit">Wyślij</button>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -38,9 +28,14 @@
         name: 'MyComponent',
         data: function () {
             return {
-                darkColor: "bg-primary",
-                lightColor: "bg-info",
-                dataValue: "bg-info"
+                name: "",
+                category: "",
+                price: 0
+            }
+        },
+        methods: {
+            handleSubmit() {
+                console.log(`Wysłano formularz: ${this.name} ${this.category}` + `${this.price}`);
             }
         }
     }
