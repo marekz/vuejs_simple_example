@@ -40,7 +40,13 @@
                 category: "",
                 price: 0,
                 validationErrors: {},
+                hasSubmitted: false
             }
+        },
+        watch: {
+            name(value) { this.validateWatch("name", value) },
+            category(value) { this.validateWatch("category", value) },
+            price(value) { this.validateWatch("price", value) }
         },
         computed: {
             errors() {
@@ -48,6 +54,11 @@
             }
         },
         methods: {
+            validateWatch(propertyName, value) {
+                if (this.hasSubmitted) {
+                    this.validate(propertyName, value);
+                }
+            },
             validate(propertyName, value) {
                 let errors = [];
                 Object(validation)[propertyName].forEach(v => {
@@ -68,6 +79,7 @@
                 return this.errors;
             },
             handleSubmit() {
+                this.hasSubmitted = true;
                 if (this.validateAll()) {
                     console.log(`WYSŁANO FORMULARZ: ${this.name} ${this.category}` + ` ${this.price}`);
                 }
