@@ -9,10 +9,10 @@
 </template>
 <script>
     export default {
-        props: ["labelText"],
+        props: ["labelText", "initialValue"],
         data: function() {
             return {
-                message: "To jest komponent-dziecko"
+                message: this.initialValue
             }
         }
     }

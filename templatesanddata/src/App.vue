@@ -1,8 +1,8 @@
 <template>
     <div class="bg-secondary text-white text-center m-2 p-2 h5">
         {{ message }}
-        <MyFeature></MyFeature>
-        <child-component></child-component>
+        <MyFeature label-text="Nazwa" initialValue="Kajak"></MyFeature>
+        <child-component labelText="Kategoria" initialValue="Sporty wodne"></child-component>
     </div>
 </template>
 
