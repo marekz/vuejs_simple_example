@@ -8,7 +8,6 @@
 
 <script>
     import ChildComponent from "./components/Child";
-
     export default {
         name: 'App',
         components: {
