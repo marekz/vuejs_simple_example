@@ -1,9 +1,8 @@
 <template>
     <div class="bg-secondary text-white text-center m-2 p-2 h5">
-        <div class="form-group">
-            <input class="form-control" v-model="labelText" />
-        </div>
-        <my-feature v-bind:label-text="labelText" initial-value="Kajak"></my-feature>
+        <h6>{{ message }}</h6>
+        <my-feature v-bind:initial-product="product"
+            v-on:productSubmit="updateProduct"></my-feature>
     </div>
 </template>
 
@@ -16,8 +15,17 @@
         },
         data: function() {
             return {
-                message: "To jest komponent-rodzic",
-                labelText: "Nazwa"
+                message: "Gotowy",
+                product: {
+                    name: "Kajak",
+                    category: "Sporty wodne",
+                    price: 275
+                }
+            }
+        },
+        methods: {
+            updateProduct(newProduct) {
+                this.message = JSON.stringify(newProduct);
             }
         }
     }
