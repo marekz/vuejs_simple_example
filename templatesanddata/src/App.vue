@@ -2,7 +2,7 @@
     <div class="bg-secondary text-white text-center m-2 p-2 h5">
         <product-display v-bind:product="product">
             <div slot-scope="data" class="bg-info text-left">
-                {{ data.propname }} ma wartość {{ data.value }}
+                {{ data.propname }} ma wartość {{ data.propvalue }}
             </div>
         </product-display>
         <my-feature v-bind:initial-product="product"
