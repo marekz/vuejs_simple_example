@@ -2,7 +2,9 @@
     <div class="bg-secondary text-white text-center m-2 p-2 h5">
         <h6>{{ message }}</h6>
         <my-feature v-bind:initial-product="product"
-            v-on:productSubmit="updateProduct"></my-feature>
+            v-on:productSubmit="updateProduct">
+            <div class="bg-warning m-2 p-2 h3 text-dark">Edytor produktów</div>
+        </my-feature>
     </div>
 </template>
 

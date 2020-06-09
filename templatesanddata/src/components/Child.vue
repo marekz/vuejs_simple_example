@@ -1,5 +1,8 @@
 <template>
     <div class="bg-primary text-white text-center m-2 p-3 h6">
+        <slot>
+            <h4>Skorzystaj z pól formularza, aby zmienić dane</h4>
+        </slot>
         <div class="form-group m-1 text-left">
             <label>Nazwa</label>
             <input v-model="product.name" class="form-control" />
