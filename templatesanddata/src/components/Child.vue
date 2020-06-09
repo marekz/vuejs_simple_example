@@ -1,6 +1,6 @@
 <template>
     <div class="bg-primary text-white text-center m-2 p-3 h6">
-        <slot>
+        <slot name="header">
             <h4>Skorzystaj z pól formularza, aby zmienić dane</h4>
         </slot>
         <div class="form-group m-1 text-left">
@@ -15,6 +15,7 @@
             <label>Cena</label>
             <input v-model.number="product.price" class="form-control" />
         </div>
+        <slot name="footer"></slot>
         <div class="mt-2">
             <button class="btn btn-info" v-on:click="doSubmit">Wyślij</button>
         </div>

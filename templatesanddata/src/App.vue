@@ -3,7 +3,12 @@
         <h6>{{ message }}</h6>
         <my-feature v-bind:initial-product="product"
             v-on:productSubmit="updateProduct">
-            <div class="bg-warning m-2 p-2 h3 text-dark">Edytor produktów</div>
+            <div slot="header" class="bg-warning m-2 p-2 h3 text-dark">
+                Edytor produktów
+            </div>
+            <div slot="footer" class="bg-warning m-2 p-2 h3 text-dark">
+                Sprawdź informacje przed wysłaniem
+            </div>
         </my-feature>
     </div>
 </template>
