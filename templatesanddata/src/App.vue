@@ -1,8 +1,9 @@
 <template>
     <div class="bg-secondary text-white text-center m-2 p-2 h5">
-        {{ message }}
-        <MyFeature label-text="Nazwa" initialValue="Kajak"></MyFeature>
-        <child-component labelText="Kategoria" initialValue="Sporty wodne"></child-component>
+        <div class="form-group">
+            <input class="form-control" v-model="labelText" />
+        </div>
+        <my-feature v-bind:label-text="labelText" initial-value="Kajak"></my-feature>
     </div>
 </template>
 
@@ -15,7 +16,8 @@
         },
         data: function() {
             return {
-                message: "To jest komponent-rodzic"
+                message: "To jest komponent-rodzic",
+                labelText: "Nazwa"
             }
         }
     }
